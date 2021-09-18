@@ -2,6 +2,19 @@ default:
   golem_name: dsmanage
   golem_version: 0.0.0.9000
   app_prod: no
+  pin_boards:
+   output: /home/alex/Dropbox/rpins/datasets/oas/multidim21/out
+   datasets: /home/alex/Dropbox/rpins/datasets/oas/multidim21/meta
+   local: /home/alex/Dropbox/rpins/datasets/local_generic/1stlocalboard
+   oasw: /home/alex/Dropbox/rpins/datasets/packages/OasW
+   dsmanage: /home/alex/Dropbox/rpins/datasets/packages/dsmanage
+  datasets:
+    wider_companion_w:
+      board: oasw_board
+      datadict: wider_companion_w_datadict
+    wider_companion_w_sf:
+      board: oasw_board
+      datadict: wider_companion_w_datadict
 production:
   app_prod: yes
 dev:

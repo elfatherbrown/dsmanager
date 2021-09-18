@@ -1,0 +1,46 @@
+---
+title: "dsmanage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{dsmanage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(dsmanage)
+library(pins)
+library(tidyverse)
+```
+
+```{r}
+
+b <- pins::board_folder(get_golem_config('pin_boards')$oasw)
+wid_dd <- pins::pin_read(b,'wider_companion_w_datadict')
+widc <- pins::pin_read(b,'wider_companion_w')
+wid_dd <- wid_dd %>% 
+    mutate(idx=row_number(),
+           across(where(is.character),as.character),
+           original_category=str_remove_all(suggested_variable_category,
+                                                     "^[^\\.]+\\."),
+           variable_description=original_variable_description,
+           variable_type=""
+           ) %>% 
+    rename(
+        suggested_variable_categories=suggested_variable_category
+    ) 
+ddict <- DataDictionary$new(
+    dataset_code = 'wide_companion_w',
+    datadict = wid_dd
+)
+
+ddict$document_data(widc)
+```
+
