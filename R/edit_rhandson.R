@@ -102,12 +102,14 @@ edit_rhadson <- function (externalData)
       else {
         if (nzchar(input$data) && !is.null(values[["hot"]])) {
           saveRDS(values[["hot"]], fname)
+          print(glue::glue("saved to {fname}"))
           code <- paste(input$data, " = readRDS('", fname,
                         "')", sep = "")
+
           rstudioapi::sendToConsole(code)
         }
       }
-      invisible(shiny::stopApp())
+      shiny::stopApp(returnValue=values[['hot']] %>% as_tibble())
     })
   }
   viewer <- shiny::dialogViewer("Edit", width = 1000, height = 800)

@@ -16,6 +16,13 @@
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
 usethis::use_package( "thinkr" )
+usethis::use_package( "magrittr" )
+usethis::use_package( "tibble" )
+usethis::use_package( "janitor" )
+usethis::use_package( "shiny" )
+usethis::use_package( "dplyr" )
+usethis::use_package("rhandsontable")
+usethis::use_pipe(export=TRUE)
 ## Add modules ----
 ## Create a module infrastructure in R/
 # golem::add_module( name = "name_of_module1" ) # Name of the module

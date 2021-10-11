@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval=FALSE
 )
 ```
 
@@ -22,7 +23,7 @@ library(tidyverse)
 
 ```{r}
 
-b <- pins::board_folder(get_golem_config('pin_boards')$oasw)
+b <- pins::board_folder(get_golem_config('pin_boards')$oasw,versioned = TRUE)
 wid_dd <- pins::pin_read(b,'wider_companion_w_datadict')
 widc <- pins::pin_read(b,'wider_companion_w')
 wid_dd <- wid_dd %>% 
